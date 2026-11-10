@@ -23,8 +23,16 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_NO_INPUT=1 \
     PIP_BREAK_SYSTEM_PACKAGES=1
 
-# The model and its licence, echoed on every response so the three can never silently disagree.
-ENV VOICE_MODEL_ID="Qwen/Qwen3-TTS-12Hz-1.7B-Base" \
+# TWO checkpoints, two modes, one endpoint. Both declare architectures
+# ["Qwen3TTSForConditionalGeneration"], model_type qwen3_tts and transformers_version 4.57.3, so the pins
+# below load either one unchanged and a second endpoint would only idle a second GPU.
+#
+# Both pinned to immutable commits and both echoed on every response, so the sha that actually answered is
+# never a guess. Both Apache-2.0.
+ENV QWEN_DESIGN_MODEL_ID="Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign" \
+    QWEN_DESIGN_MODEL_SHA="5ecdb67327fd37bb2e042aab12ff7391903235d3" \
+    QWEN_CLONE_MODEL_ID="Qwen/Qwen3-TTS-12Hz-1.7B-Base" \
+    QWEN_CLONE_MODEL_SHA="fd4b254389122332181a7c3db7f27e918eec64e3" \
     VOICE_MODEL_LICENSE="Apache-2.0"
 
 ENV VOICE_VOLUME_CACHE="/runpod-volume/hf" \

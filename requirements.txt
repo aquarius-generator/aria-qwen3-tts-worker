@@ -1,0 +1,7 @@
+# qwen-tts 0.1.1 pins transformers==4.57.3 and accelerate==1.12.0 itself, so naming the package version
+# fixes most of the tree and leaves pip nothing to search for. Ranged pins are what made an earlier worker
+# in this family spend its entire build budget backtracking.
+runpod==1.7.7
+qwen-tts==0.1.1
+hf-transfer==0.1.9
+soundfile==0.14.0
